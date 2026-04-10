@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def load_documents(docs_path='docs'):
+    print("Here is details of document from data source")
     print(f"loading documents from {docs_path}...")
     
     if not os.path.exists(docs_path):
@@ -40,8 +41,6 @@ load_documents(docs_path="docs")
     
 #     # chunking the files
 #     # Embedding and storing in vector DB
-    
- 
-    
+  
     
 
