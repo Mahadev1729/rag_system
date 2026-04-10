@@ -25,7 +25,7 @@ def load_documents(docs_path='docs'):
     if len(documents)==0:
         raise FileNotFoundError(f"No, txt files found in {docs_path}.please add your company documents")
     
-    for i, doc in enumerate(documents[:2]):
+    for i, doc in enumerate(documents[:len(documents)]):
         print(f"\n Documents {i+1}")
         print(f"Source:{doc.metadata['source']}")
         print(f"Content length:{len(doc.page_content)} characters")
