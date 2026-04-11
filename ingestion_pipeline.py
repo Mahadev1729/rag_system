@@ -34,13 +34,32 @@ def load_documents(docs_path='docs'):
         print(f"metadata:{doc.metadata}")
     return documents   
 
-load_documents(docs_path="docs")   
-# def main():
+def split_documents(documents,chunk_size=800,chunk_overlap=0):
+    print("Splitting documents into chunks...")
     
-#     # loading the files
+    text_splitter=CharacterTextSplitter(
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap
+    )
     
-#     # chunking the files
-#     # Embedding and storing in vector DB
+    chunks=text_splitter.split_documents(documents)
+    
+    if chunks:
+        for i,chunk in enumerate(chunks[:5]):
+            print(f"\n--Chunk {i+1}---")
+            print(f"Source:{chunk.metadata['source']}")
+            print(f"Length {len(chunk.page_content)} characters")
+            print(f"Content:")
+            print(chunk.page_content)
+            print("-"*50)
+            
+        if len(chunks)>5:
+            print(f"\n.. and {len(chunks)-5} more chunks")    
+    return chunks        
+
+documents=load_documents(docs_path="docs") 
+chunks=split_documents(documents)  
+
   
     
 
